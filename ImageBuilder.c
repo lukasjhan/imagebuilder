@@ -29,7 +29,7 @@ int main(int argc, char* argv[])
     int iSourceSize;
         
     // check command line options
-     if( argc < 4 )
+    if ( argc < 4 )
     {
         fprintf( stderr, "[ERROR] ImageMaker.exe BootLoader.bin Kernel32.bin Kernel64.bin\n" );
         exit( -1 );
