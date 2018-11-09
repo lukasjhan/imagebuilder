@@ -75,7 +75,7 @@ int main(int argc, char* argv[])
 
     // 64bit mode
     printf( "[INFO] Copy IA-32e mode kernel to image file\n" );
-    if( ( iSourceFd = open( argv[ 3 ], O_RDONLY | O_BINARY ) ) == -1 )
+    if ( ( iSourceFd = open( argv[ 3 ], O_RDONLY | O_BINARY ) ) == -1 )
     {
         fprintf( stderr, "[ERROR] %s open fail\n", argv[ 3 ] );
         exit( -1 );
@@ -116,13 +116,12 @@ int AdjustInSectorSize( int iFd, int iSourceSize )
     if ( iAdjustSizeToSector != 0 )
     {
         iAdjustSizeToSector = 512 - iAdjustSizeToSector;
-        printf( "[INFO] File size [%lu] and fill [%u] byte\n", iSourceSize, 
-            iAdjustSizeToSector );
+        printf( "[INFO] File size [%lu] and fill [%u] byte\n", iSourceSize, iAdjustSizeToSector );
+
         for ( i = 0 ; i < iAdjustSizeToSector ; i++ )
             write( iFd , &cCh , 1 );
     }
     else printf( "[INFO] File size is aligned 512 byte\n" );
-    
     
     // return number of sector
     iSectorCount = ( iSourceSize + iAdjustSizeToSector ) / BYTESOFSECTOR;
@@ -155,10 +154,8 @@ void WriteKernelInformation( int iTargetFd, int iTotalKernelSectorCount, int iKe
     usData = ( unsigned short ) iKernel32SectorCount;
     write( iTargetFd, &usData, 2 );
 
-    printf( "[INFO] Total sector count except boot loader [%d]\n", 
-        iTotalKernelSectorCount );
-    printf( "[INFO] Total sector count of protected mode kernel [%d]\n", 
-        iKernel32SectorCount );
+    printf( "[INFO] Total sector count except boot loader [%d]\n", iTotalKernelSectorCount );
+    printf( "[INFO] Total sector count of protected mode kernel [%d]\n", iKernel32SectorCount );
 }
 
 /**
