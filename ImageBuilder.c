@@ -141,7 +141,7 @@ void WriteKernelInformation( int iTargetFd, int iTotalKernelSectorCount, int iKe
     long lPosition;
     
     // 5th byte is target
-    lPosition = lseek( iTargetFd, 5, SEEK_SET );
+    lPosition = lseek( iTargetFd, (off_t)5, SEEK_SET );
     if ( lPosition == -1 )
     {
         fprintf( stderr, "lseek fail. Return value = %d, errno = %d, %d\n", 
